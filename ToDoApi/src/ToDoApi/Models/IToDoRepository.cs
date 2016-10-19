@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace ToDoApi.Models
 {
-    public interface IToDoRepository
+    public interface ITodoRepository
     {
-        void Add(ToDoItem item);
-        IEnumerable<ToDoItem> GetAll();
-        ToDoItem Find(string key);
-        ToDoItem Remove(string key);
-        void Update(ToDoItem item);
+        void Add(TodoItem item);
+        IEnumerable<TodoItem> GetAll();
+        TodoItem Find(string key);
+        TodoItem Remove(string key);
+        void Update(TodoItem item);
     }
 }

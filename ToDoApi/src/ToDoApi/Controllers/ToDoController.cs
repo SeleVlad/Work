@@ -7,21 +7,20 @@ namespace ToDoApi.Controllers
     [Route("api/[todo]")]
     public class TodoController : Controller
     {
-        public TodoController(IToDoRepository todoItems)
+        public TodoController(ITodoRepository todoItems)
         {
             TodoItems = todoItems;
         }
-
-        public IToDoRepository TodoItems { get; set; }
+        public ITodoRepository TodoItems { get; set; }
 
 
         [HttpGet]
-        public IEnumerable<ToDoItem> GetAll()
+        public IEnumerable<TodoItem> GetAll()
         {
             return TodoItems.GetAll();
         }
 
-        [HttpGet("{id}", Name = "GetToDo")]
+        [HttpGet("{id}", Name = "GetTodo")]
         public IActionResult GetById(string id)
         {
             var item = TodoItems.Find(id);
@@ -33,7 +32,7 @@ namespace ToDoApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] ToDoItem item)
+        public IActionResult Create([FromBody] TodoItem item)
         {
             if (item == null)
             {
@@ -43,8 +42,26 @@ namespace ToDoApi.Controllers
             return CreatedAtRoute("GetTodo", new { id = item.Key }, item);
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Update(string id, [FromBody] TodoItem item)
+        {
+            if (item == null || item.Key != id)
+            {
+                return BadRequest();
+            }
+
+            var todo = TodoItems.Find(id);
+            if (todo == null)
+            {
+                return NotFound();
+            }
+
+            TodoItems.Update(item);
+            return new NoContentResult();
+        }
+
         [HttpPatch("{id}")]
-        public IActionResult Update([FromBody] ToDoItem item, string id)
+        public IActionResult Update([FromBody] TodoItem item, string id)
         {
             if (item == null)
             {

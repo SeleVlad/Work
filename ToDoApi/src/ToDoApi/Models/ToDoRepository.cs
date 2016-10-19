@@ -6,44 +6,44 @@ using System.Collections.Concurrent;
 
 namespace ToDoApi.Models
 {
-    public class ToDoRepository : IToDoRepository
+    public class TodoRepository : ITodoRepository
     {
 
-        private static ConcurrentDictionary<string, ToDoItem> _todos =
-            new ConcurrentDictionary<string, ToDoItem>();
+        private static ConcurrentDictionary<string, TodoItem> _todos =
+            new ConcurrentDictionary<string, TodoItem>();
 
-        public ToDoRepository()
+        public TodoRepository()
         {
-            Add(new ToDoItem { Name = "Item1" });
+            Add(new TodoItem { Name = "Item1" });
         }
 
-        public IEnumerable<ToDoItem> GetAll()
+        public IEnumerable<TodoItem> GetAll()
         {
             return _todos.Values;
         }
 
-        public void Add(ToDoItem item)
+        public void Add(TodoItem item)
         {
             item.Key = Guid.NewGuid().ToString();
             _todos[item.Key] = item;
         }
 
-        public ToDoItem Find(string key)
+        public TodoItem Find(string key)
         {
-            ToDoItem item;
+            TodoItem item;
             _todos.TryGetValue(key, out item);
             return item;
            
         }
 
-        public ToDoItem Remove(string key)
+        public TodoItem Remove(string key)
         {
-            ToDoItem item;
+            TodoItem item;
             _todos.TryRemove(key, out item);
             return item;
         }
 
-        public void Update(ToDoItem item)
+        public void Update(TodoItem item)
         {
             _todos[item.Key] = item;
         }

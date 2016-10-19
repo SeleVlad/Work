@@ -175,6 +175,6 @@
 "E:\GitRepository\ToDoApi\src\ToDoApi\Startup.cs"
 "E:\GitRepository\ToDoApi\src\ToDoApi\Controllers\ToDoController.cs"
 "E:\GitRepository\ToDoApi\src\ToDoApi\Controllers\ValuesController.cs"
-"E:\GitRepository\ToDoApi\src\ToDoApi\Models\IToDoRepository.cs"
+"E:\GitRepository\ToDoApi\src\ToDoApi\Models\ITodoRepository.cs"
 "E:\GitRepository\ToDoApi\src\ToDoApi\Models\ToDoItem.cs"
 "E:\GitRepository\ToDoApi\src\ToDoApi\Models\ToDoRepository.cs"
